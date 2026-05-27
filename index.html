@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barhio — Save places. Share with friends.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;
+  --cream-dark:#EDE7D6;
+  --ink:#1A1208;
+  --orange:#E85A1E;
+  --green:#2D7A3A;
+  --pistachio:#C5E8A0;
+  --red:#D63B2F;
+  --yellow:#F5C842;
+  --blue:#2B5BE8;
+  --pink:#FF6B9D;
+  --gray:#8A7F6E;
+  --border:#D4C9B0;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+}
+
+/* GRAIN TEXTURE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.5;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(245,240,232,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1.5px solid var(--border);
+}
+.logo{
+  font-family:'Fraunces',serif;
+  font-size:1.6rem;font-weight:700;
+  color:var(--ink);text-decoration:none;
+  letter-spacing:-0.03em;
+}
+.logo .dot{color:var(--orange)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-toggle{
+  display:flex;gap:0;
+  border:1.5px solid var(--border);
+  border-radius:999px;overflow:hidden;
+}
+.lang-btn{
+  padding:0.3rem 0.75rem;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:0.78rem;font-weight:700;
+  background:none;border:none;cursor:pointer;
+  color:var(--gray);transition:all 0.15s;
+  letter-spacing:0.04em;
+}
+.lang-btn.active{background:var(--ink);color:var(--cream)}
+.cta-nav{
+  background:var(--orange);color:#fff;
+  padding:0.55rem 1.4rem;border-radius:999px;
+  font-size:0.85rem;font-weight:800;
+  text-decoration:none;letter-spacing:-0.01em;
+  transition:transform 0.15s,opacity 0.15s;
+  border:1.5px solid var(--orange);
+}
+.cta-nav:hover{transform:scale(1.03);opacity:0.92}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:flex-start;justify-content:center;
+  padding:8rem 2rem 5rem;
+  max-width:1200px;margin:0 auto;
+  position:relative;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--pistachio);
+  border:1.5px solid var(--green);
+  padding:0.4rem 1rem;border-radius:999px;
+  font-size:0.78rem;font-weight:800;
+  color:var(--green);letter-spacing:0.06em;
+  text-transform:uppercase;margin-bottom:2rem;
+}
+.hero-badge .blink{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  animation:blink 1.8s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(4rem,10vw,8.5rem);
+  line-height:0.92;letter-spacing:-0.04em;
+  font-weight:700;max-width:900px;
+  margin-bottom:2rem;
+}
+h1 .line2{display:block;font-style:italic;color:var(--orange)}
+h1 .line3{display:block}
+
+.hero-row{
+  display:flex;align-items:flex-end;gap:3rem;
+  flex-wrap:wrap;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--gray);
+  max-width:380px;line-height:1.7;
+  margin-bottom:2rem;font-weight:400;
+}
+
+/* FORM */
+.waitlist-wrap{display:flex;flex-direction:column;gap:0.5rem}
+.form-row{
+  display:flex;gap:0;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  padding:0.3rem 0.3rem 0.3rem 1.25rem;
+  box-shadow:3px 3px 0 var(--border);
+  transition:box-shadow 0.15s;
+  max-width:420px;
+}
+.form-row:focus-within{box-shadow:3px 3px 0 var(--ink);border-color:var(--ink)}
+.form-row input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:0.9rem;color:var(--ink);font-weight:400;
+  min-width:0;
+}
+.form-row input::placeholder{color:var(--gray)}
+.form-row button{
+  background:var(--ink);color:var(--cream);
+  border:none;border-radius:999px;
+  padding:0.65rem 1.4rem;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:0.85rem;font-weight:800;
+  cursor:pointer;white-space:nowrap;
+  transition:background 0.15s;
+}
+.form-row button:hover{background:var(--orange)}
+.form-note{font-size:0.75rem;color:var(--gray)}
+.success-msg{
+  display:none;
+  background:var(--pistachio);
+  border:1.5px solid var(--green);
+  border-radius:12px;padding:0.75rem 1.25rem;
+  font-size:0.85rem;font-weight:700;color:var(--green);
+  max-width:420px;
+}
+
+/* STICKER PILE in hero */
+.stickers{
+  position:absolute;right:3rem;top:50%;
+  transform:translateY(-42%);
+  width:320px;
+  display:grid;gap:0;
+}
+@media(max-width:900px){.stickers{display:none}}
+.sticker{
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:16px;
+  padding:1rem 1.25rem;
+  box-shadow:4px 4px 0 var(--ink);
+  position:relative;
+}
+.sticker+.sticker{margin-top:0.75rem}
+.sticker-label{
+  font-size:0.65rem;font-weight:800;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gray);
+  margin-bottom:0.35rem;
+}
+.sticker-place{
+  font-family:'Fraunces',serif;
+  font-size:1rem;font-weight:700;
+  color:var(--ink);margin-bottom:0.2rem;
+}
+.sticker-meta{font-size:0.78rem;color:var(--gray)}
+.sticker-stars{color:var(--orange);font-size:0.85rem;margin-bottom:0.15rem}
+.sticker-badge{
+  position:absolute;top:-10px;right:12px;
+  background:var(--orange);color:#fff;
+  font-size:0.65rem;font-weight:800;
+  padding:0.2rem 0.6rem;border-radius:999px;
+  border:1.5px solid var(--ink);
+}
+.sticker-friends{
+  display:flex;align-items:center;gap:0.4rem;
+  margin-top:0.4rem;
+}
+.friend-avatars{display:flex}
+.friend-avatar{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid #fff;
+  margin-left:-6px;font-size:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#fff;
+}
+.fa1{background:var(--orange)}
+.fa2{background:var(--blue)}
+.fa3{background:var(--pink)}
+.friends-text{font-size:0.72rem;color:var(--gray);font-weight:500}
+.notif-sticker{
+  background:var(--ink);color:var(--cream);
+  border-radius:16px;padding:0.85rem 1.1rem;
+  display:flex;align-items:flex-start;gap:0.75rem;
+  box-shadow:4px 4px 0 var(--orange);
+}
+.notif-icon-box{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--orange);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+}
+.notif-app{font-size:0.65rem;color:rgba(245,240,232,0.5);margin-bottom:0.15rem}
+.notif-title{font-size:0.82rem;font-weight:700;color:var(--cream)}
+.notif-body{font-size:0.72rem;color:rgba(245,240,232,0.6)}
+
+/* TAPE decorations */
+.tape{
+  position:absolute;
+  width:48px;height:16px;
+  opacity:0.6;border-radius:2px;
+}
+
+/* MARQUEE */
+.marquee-wrap{
+  background:var(--ink);
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+  padding:0.85rem 0;overflow:hidden;
+}
+.marquee-track{
+  display:flex;gap:2.5rem;
+  animation:marquee 22s linear infinite;
+  white-space:nowrap;
+}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.85rem;font-weight:800;
+  color:var(--cream);letter-spacing:0.04em;
+  text-transform:uppercase;
+}
+.marquee-sep{color:var(--orange);font-size:1.1rem}
+
+/* SECTION commons */
+.section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.section-eyebrow{
+  display:inline-block;
+  background:var(--yellow);
+  border:1.5px solid var(--ink);
+  border-radius:999px;
+  padding:0.25rem 0.85rem;
+  font-size:0.72rem;font-weight:800;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:1.25rem;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.section-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:700;line-height:1.05;
+  letter-spacing:-0.03em;margin-bottom:1rem;
+}
+.section-title em{font-style:italic;color:var(--orange)}
+.section-sub{
+  font-size:1rem;color:var(--gray);
+  max-width:480px;line-height:1.7;margin-bottom:3rem;
+}
+
+/* FEATURES */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1rem;
+}
+.feature-card{
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:20px;
+  padding:1.75rem;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform 0.15s,box-shadow 0.15s;
+}
+.feature-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.feature-emoji{
+  font-size:2rem;margin-bottom:1rem;
+  display:block;
+}
+.feature-title{
+  font-family:'Fraunces',serif;
+  font-size:1.15rem;font-weight:700;
+  margin-bottom:0.5rem;letter-spacing:-0.02em;
+}
+.feature-body{font-size:0.875rem;color:var(--gray);line-height:1.65}
+.feature-card:nth-child(1){background:var(--pistachio)}
+.feature-card:nth-child(2){background:#FFF3D4}
+.feature-card:nth-child(3){background:#FFE4ED}
+.feature-card:nth-child(4){background:#E4EDFF}
+
+/* HOW IT WORKS */
+.how-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:start;
+}
+@media(max-width:700px){.how-grid{grid-template-columns:1fr}}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{
+  display:flex;gap:1.25rem;
+  padding:1.75rem 0;
+  border-bottom:1.5px solid var(--border);
+}
+.step:last-child{border-bottom:none}
+.step-num{
+  font-family:'Fraunces',serif;
+  font-size:3rem;font-weight:700;
+  color:var(--cream-dark);line-height:1;
+  min-width:2.5rem;padding-top:0.1rem;
+  -webkit-text-stroke:1.5px var(--border);
+}
+.step-title{
+  font-family:'Fraunces',serif;
+  font-size:1.05rem;font-weight:700;
+  margin-bottom:0.35rem;letter-spacing:-0.01em;
+}
+.step-body{font-size:0.875rem;color:var(--gray);line-height:1.65;margin-bottom:0.5rem}
+.step-pill{
+  display:inline-block;
+  background:var(--ink);color:var(--cream);
+  font-size:0.68rem;font-weight:800;
+  padding:0.2rem 0.65rem;border-radius:999px;
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+
+/* PROMISE BOX */
+.promise{
+  margin:0 2rem;
+  background:var(--ink);color:var(--cream);
+  border-radius:24px;padding:3rem;
+  display:flex;align-items:flex-start;gap:2rem;
+  border:2px solid var(--ink);
+  box-shadow:6px 6px 0 var(--orange);
+  position:relative;overflow:hidden;
+}
+.promise::before{
+  content:'';position:absolute;
+  top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:var(--orange);opacity:0.08;
+}
+.promise-lock{
+  font-size:2.5rem;flex-shrink:0;
+  background:var(--orange);
+  width:56px;height:56px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.promise-label{
+  font-size:0.7rem;font-weight:800;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(245,240,232,0.5);margin-bottom:0.5rem;
+}
+.promise-text{
+  font-family:'Fraunces',serif;
+  font-size:1.3rem;font-weight:700;
+  line-height:1.45;letter-spacing:-0.02em;
+}
+.promise-text strong{color:var(--orange)}
+
+/* FINAL CTA */
+.final{
+  padding:7rem 2rem;
+  text-align:center;
+  max-width:700px;margin:0 auto;
+}
+.final h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:700;line-height:0.95;
+  letter-spacing:-0.04em;margin-bottom:1.5rem;
+}
+.final h2 em{font-style:italic;color:var(--orange)}
+.final p{color:var(--gray);margin-bottom:2rem;font-size:1rem}
+.final-form{
+  display:flex;gap:0;
+  background:#fff;
+  border:2px solid var(--ink);
+  border-radius:999px;padding:0.3rem 0.3rem 0.3rem 1.5rem;
+  box-shadow:5px 5px 0 var(--ink);
+  max-width:460px;margin:0 auto 0.75rem;
+  transition:box-shadow 0.15s;
+}
+.final-form:focus-within{box-shadow:5px 5px 0 var(--orange)}
+.final-form input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:0.95rem;color:var(--ink);min-width:0;
+}
+.final-form input::placeholder{color:var(--gray)}
+.final-form button{
+  background:var(--orange);color:#fff;
+  border:none;border-radius:999px;
+  padding:0.7rem 1.6rem;
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:0.9rem;font-weight:800;cursor:pointer;
+  transition:background 0.15s;white-space:nowrap;
+}
+.final-form button:hover{background:var(--red)}
+.final-note{font-size:0.75rem;color:var(--gray)}
+
+/* FOOTER */
+footer{
+  background:var(--ink);
+  padding:2.5rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+footer .logo{color:var(--cream)}
+footer .logo .dot{color:var(--orange)}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{
+  font-size:0.82rem;color:rgba(245,240,232,0.5);
+  text-decoration:none;transition:color 0.15s;
+}
+.footer-links a:hover{color:var(--cream)}
+.footer-copy{font-size:0.78rem;color:rgba(245,240,232,0.3)}
+
+/* ANIMATIONS */
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(-2deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(1.5deg)}50%{transform:translateY(-6px) rotate(1.5deg)}}
+@keyframes floatC{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
+.float-a{animation:floatA 4s ease-in-out infinite}
+.float-b{animation:floatB 5s ease-in-out infinite}
+.float-c{animation:floatC 3.5s ease-in-out infinite}
+
+/* TRANSLATIONS */
+[data-lang]{display:none}
+[data-lang="en"]{display:block}
+span[data-lang="en"],span[data-lang="fr"],span[data-lang="es"]{display:none}
+span[data-lang="en"]{display:inline}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Bar<span class="dot">h</span>io</a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="#waitlist" class="cta-nav" id="nav-cta">Join waitlist</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="blink"></span>
+    <span data-lang="en">Coming to France & Spain</span>
+    <span data-lang="fr">Bientôt en France & Espagne</span>
+    <span data-lang="es">Próximamente en Francia & España</span>
+  </div>
+
+  <h1>
+    <span data-lang="en">Save places.<br><span class="line2">Share</span><span class="line3"> with friends.</span></span>
+    <span data-lang="fr">Sauvegarde<br><span class="line2">partage</span><span class="line3"> avec tes amis.</span></span>
+    <span data-lang="es">Guarda sitios.<br><span class="line2">Comparte</span><span class="line3"> con amigos.</span></span>
+  </h1>
+
+  <div class="hero-row">
+    <div>
+      <p class="hero-sub">
+        <span data-lang="en">The social map for foodies. Capture spots from Instagram or Google Maps, build lists, and see what the people you trust actually recommend.</span>
+        <span data-lang="fr">La carte sociale pour foodies. Capture des adresses depuis Instagram ou Google Maps, crée des listes, et vois ce que tes amis recommandent vraiment.</span>
+        <span data-lang="es">El mapa social para foodies. Captura sitios desde Instagram o Google Maps, crea listas y descubre lo que tus amigos recomiendan de verdad.</span>
+      </p>
+      <div class="waitlist-wrap">
+        <div class="form-row" id="hero-form-wrap">
+          <input type="email" id="hero-email" placeholder="your@email.com" />
+          <button onclick="submitWaitlist('hero')">
+            <span data-lang="en">Get early access</span>
+            <span data-lang="fr">Accès anticipé</span>
+            <span data-lang="es">Acceso anticipado</span>
+          </button>
+        </div>
+        <p class="form-note">
+          <span data-lang="en">No spam. Free forever for users.</span>
+          <span data-lang="fr">Pas de spam. Gratuit pour toujours.</span>
+          <span data-lang="es">Sin spam. Gratis para siempre.</span>
+        </p>
+        <div class="success-msg" id="hero-success">
+          <span data-lang="en">✓ You're on the list! We'll reach out when Barhio launches.</span>
+          <span data-lang="fr">✓ Tu es sur la liste ! On te contacte au lancement.</span>
+          <span data-lang="es">✓ ¡Estás en la lista! Te avisamos cuando lancemos.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING STICKER CARDS -->
+  <div class="stickers">
+    <div class="sticker float-a" style="transform:rotate(-2deg)">
+      <div class="sticker-badge">3 friends saved this</div>
+      <div class="sticker-label">Visited ✓</div>
+      <div class="sticker-stars">★★★★★</div>
+      <div class="sticker-place">Bodega Hidden Kitchen</div>
+      <div class="sticker-meta">Poblenou, Barcelona</div>
+      <div class="sticker-friends">
+        <div class="friend-avatars">
+          <div class="friend-avatar fa1" style="margin-left:0">M</div>
+          <div class="friend-avatar fa2">S</div>
+          <div class="friend-avatar fa3">L</div>
+        </div>
+        <div class="friends-text">Marco, Sophie + 1 love this</div>
+      </div>
+    </div>
+
+    <div class="sticker float-b" style="transform:rotate(1.5deg);margin-left:2rem">
+      <div class="sticker-label">Wishlist ♡</div>
+      <div class="sticker-place">Bar Calders</div>
+      <div class="sticker-meta">Sant Antoni · saved from Instagram</div>
+    </div>
+
+    <div class="notif-sticker float-c">
+      <div class="notif-icon-box">📍</div>
+      <div>
+        <div class="notif-app">BARHIO · now</div>
+        <div class="notif-title">Sophie shared a list</div>
+        <div class="notif-body">Date Night 🕯️ — 8 spots in Paris</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-sep">★</span> Save from Instagram</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Import Google Maps</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Share via WhatsApp</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Friend ratings only</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Zero ads, ever</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Free forever</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Barcelona · Paris · Madrid · Lyon</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Save from Instagram</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Import Google Maps</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Share via WhatsApp</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Friend ratings only</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Zero ads, ever</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Free forever</span>
+    <span class="marquee-item"><span class="marquee-sep">★</span> Barcelona · Paris · Madrid · Lyon</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section">
+  <span class="section-eyebrow" data-lang="en">What Barhio does</span>
+  <span class="section-eyebrow" data-lang="fr">Ce que fait Barhio</span>
+  <span class="section-eyebrow" data-lang="es">Qué hace Barhio</span>
+
+  <h2 class="section-title">
+    <span data-lang="en">Everything Google Maps<br>forgot to build.</span>
+    <span data-lang="fr">Tout ce que Google Maps<br>a <em>oublié</em> de faire.</span>
+    <span data-lang="es">Todo lo que Google Maps<br>olvidó <em>construir.</em></span>
+  </h2>
+  <p class="section-sub">
+    <span data-lang="en">Google Maps is for navigation. Barhio is for people who actually care about where they eat.</span>
+    <span data-lang="fr">Google Maps c'est pour se repérer. Barhio c'est pour les gens qui aiment vraiment manger.</span>
+    <span data-lang="es">Google Maps es para navegar. Barhio es para quien de verdad disfruta comer.</span>
+  </p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-emoji">📍</span>
+      <div class="feature-title" data-lang="en">Capture from anywhere</div>
+      <div class="feature-title" data-lang="fr">Capture depuis partout</div>
+      <div class="feature-title" data-lang="es">Captura desde cualquier sitio</div>
+      <div class="feature-body">
+        <span data-lang="en">Share an Instagram reel or Google Maps link to Barhio. AI extracts the place in under 5 seconds. No typing, no friction.</span>
+        <span data-lang="fr">Partage un reel Instagram ou un lien Google Maps vers Barhio. L'IA extrait l'adresse en moins de 5 secondes. Sans effort.</span>
+        <span data-lang="es">Comparte un reel de Instagram o un enlace de Google Maps a Barhio. La IA extrae el lugar en menos de 5 segundos.</span>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-emoji">⭐</span>
+      <div class="feature-title" data-lang="en">Rate what you love</div>
+      <div class="feature-title" data-lang="fr">Note ce que tu aimes</div>
+      <div class="feature-title" data-lang="es">Valora lo que te gusta</div>
+      <div class="feature-body">
+        <span data-lang="en">5 stars, a personal note, visited or wishlist. Your memory, forever organized. Never forget a good spot again.</span>
+        <span data-lang="fr">5 étoiles, une note perso, visité ou wishlist. Ta mémoire food, organisée pour toujours.</span>
+        <span data-lang="es">5 estrellas, una nota personal, visitado o wishlist. Tu memoria gastronómica, organizada para siempre.</span>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-emoji">👥</span>
+      <div class="feature-title" data-lang="en">Trust your people</div>
+      <div class="feature-title" data-lang="fr">Fais confiance à tes amis</div>
+      <div class="feature-title" data-lang="es">Confía en tu gente</div>
+      <div class="feature-body">
+        <span data-lang="en">See the aggregated rating of your friends on every place. Not 10,000 strangers — the three people whose taste you actually trust.</span>
+        <span data-lang="fr">Vois la note agrégée de tes amis sur chaque adresse. Pas 10 000 inconnus — les trois personnes dont tu fais vraiment confiance.</span>
+        <span data-lang="es">Ve la nota media de tus amigos en cada sitio. No 10.000 desconocidos — las tres personas en quienes realmente confías.</span>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-emoji">📲</span>
+      <div class="feature-title" data-lang="en">Share lists in one tap</div>
+      <div class="feature-title" data-lang="fr">Partage des listes en un tap</div>
+      <div class="feature-title" data-lang="es">Comparte listas en un tap</div>
+      <div class="feature-body">
+        <span data-lang="en">Build themed lists like "Date Night" or "Best Brunch". Share to WhatsApp in one tap — your friends see a map, no app install needed.</span>
+        <span data-lang="fr">Crée des listes comme "Dîner en amoureux" ou "Meilleurs brunchs". Partage sur WhatsApp en un tap — avec carte, sans install.</span>
+        <span data-lang="es">Crea listas como "Cena romántica" o "Mejores brunchs". Comparte por WhatsApp en un tap — con mapa, sin instalar la app.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="padding-top:2rem">
+  <div class="how-grid">
+    <div>
+      <span class="section-eyebrow" data-lang="en">How it works</span>
+      <span class="section-eyebrow" data-lang="fr">Comment ça marche</span>
+      <span class="section-eyebrow" data-lang="es">Cómo funciona</span>
+      <h2 class="section-title" style="margin-bottom:0">
+        <span data-lang="en">Three gestures.<br><em>That's it.</em></span>
+        <span data-lang="fr">Trois gestes.<br><em>C'est tout.</em></span>
+        <span data-lang="es">Tres gestos.<br><em>Nada más.</em></span>
+      </h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title" data-lang="en">Capture</div>
+          <div class="step-title" data-lang="fr">Capture</div>
+          <div class="step-title" data-lang="es">Captura</div>
+          <div class="step-body">
+            <span data-lang="en">See a restaurant on Instagram? Share it to Barhio. AI extracts name, address, and type instantly. Or search directly, or import from Google Maps.</span>
+            <span data-lang="fr">Tu vois un restaurant sur Instagram ? Partage-le vers Barhio. L'IA extrait le nom, l'adresse et le type instantanément.</span>
+            <span data-lang="es">¿Ves un restaurante en Instagram? Compártelo a Barhio. La IA extrae el nombre, dirección y tipo al instante.</span>
+          </div>
+          <span class="step-pill">Instagram · Google Maps · Search</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title" data-lang="en">Save & rate</div>
+          <div class="step-title" data-lang="fr">Sauvegarde & note</div>
+          <div class="step-title" data-lang="es">Guarda & valora</div>
+          <div class="step-body">
+            <span data-lang="en">Mark it visited or wishlist. Add your rating and a personal note. Build your map of places that matter.</span>
+            <span data-lang="fr">Marque-le visité ou wishlist. Ajoute ta note et un commentaire perso. Construis ta carte des adresses qui comptent.</span>
+            <span data-lang="es">Márcalo como visitado o wishlist. Añade tu valoración y una nota personal. Construye tu mapa de sitios favoritos.</span>
+          </div>
+          <span class="step-pill" data-lang="en">Private by default</span>
+          <span class="step-pill" data-lang="fr">Privé par défaut</span>
+          <span class="step-pill" data-lang="es">Privado por defecto</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title" data-lang="en">Share</div>
+          <div class="step-title" data-lang="fr">Partage</div>
+          <div class="step-title" data-lang="es">Comparte</div>
+          <div class="step-body">
+            <span data-lang="en">Create themed lists. One tap sends them to WhatsApp with a map. Friends can view without installing the app.</span>
+            <span data-lang="fr">Crée des listes thématiques. Un tap les envoie sur WhatsApp avec une carte. Les amis voient sans installer l'appli.</span>
+            <span data-lang="es">Crea listas temáticas. Un tap las envía por WhatsApp con un mapa. Los amigos las ven sin instalar la app.</span>
+          </div>
+          <span class="step-pill">WhatsApp · Deep links · No install</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<div class="promise">
+  <div class="promise-lock">🔒</div>
+  <div>
+    <div class="promise-label" data-lang="en">Our promise</div>
+    <div class="promise-label" data-lang="fr">Notre promesse</div>
+    <div class="promise-label" data-lang="es">Nuestra promesa</div>
+    <div class="promise-text">
+      <span data-lang="en">User feed, friend ratings, and recommendations are <strong>never influenced by money.</strong> Restaurants complete their profile — photos, menu, website — but they can never buy ranking or visibility. <strong>Ever.</strong></span>
+      <span data-lang="fr">Le feed, les notes d'amis et les recommandations ne sont <strong>jamais influencés par l'argent.</strong> Les restaurants peuvent compléter leur profil, mais ils ne peuvent jamais acheter de visibilité. <strong>Jamais.</strong></span>
+      <span data-lang="es">El feed, las valoraciones de amigos y las recomendaciones <strong>nunca están influenciadas por el dinero.</strong> Los restaurantes pueden completar su perfil, pero nunca pueden comprar visibilidad. <strong>Jamás.</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div id="waitlist">
+  <div class="final">
+    <h2>
+      <span data-lang="en">Your places.<br><em>Your friends.</em><br>Their trust.</span>
+      <span data-lang="fr">Tes adresses.<br><em>Tes amis.</em><br>Leur confiance.</span>
+      <span data-lang="es">Tus sitios.<br><em>Tus amigos.</em><br>Su confianza.</span>
+    </h2>
+    <p>
+      <span data-lang="en">Launching in France and Spain. Be among the first foodies on Barhio.</span>
+      <span data-lang="fr">Lancement en France et en Espagne. Sois parmi les premiers foodies sur Barhio.</span>
+      <span data-lang="es">Lanzamiento en Francia y España. Sé de los primeros foodies en Barhio.</span>
+    </p>
+    <div class="final-form" id="final-form-wrap">
+      <input type="email" id="final-email" placeholder="your@email.com" />
+      <button onclick="submitWaitlist('final')">
+        <span data-lang="en">Join waitlist</span>
+        <span data-lang="fr">Rejoindre la liste</span>
+        <span data-lang="es">Unirse a la lista</span>
+      </button>
+    </div>
+    <div class="success-msg" id="final-success" style="margin:0 auto;max-width:460px">
+      <span data-lang="en">✓ You're on the list! We'll reach out when Barhio launches.</span>
+      <span data-lang="fr">✓ Tu es sur la liste ! On te contacte au lancement de Barhio.</span>
+      <span data-lang="es">✓ ¡Estás en la lista! Te avisamos cuando Barhio lance.</span>
+    </div>
+    <p class="final-note">
+      <span data-lang="en">No spam. No ads. Just Barhio when it's ready.</span>
+      <span data-lang="fr">Pas de spam. Pas de pub. Juste Barhio quand c'est prêt.</span>
+      <span data-lang="es">Sin spam. Sin anuncios. Solo Barhio cuando esté listo.</span>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Bar<span class="dot">h</span>io</a>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="mailto:hello@barhio.com">Contact</a></li>
+    <li><a href="https://instagram.com/barhio">Instagram</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Barhio</span>
+</footer>
+
+<script>
+const translations = {
+  'nav-cta': {en:'Join waitlist', fr:'Rejoindre la liste', es:'Unirse a la lista'}
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    const isBlock = window.getComputedStyle(el).display !== 'inline';
+    el.style.display = el.dataset.lang === lang ? (isBlock ? 'block' : 'inline') : 'none';
+  });
+  if (translations['nav-cta'][lang]) {
+    document.getElementById('nav-cta').textContent = translations['nav-cta'][lang];
+  }
+}
+
+function submitWaitlist(source) {
+  const emailEl = document.getElementById(source + '-email');
+  const email = emailEl ? emailEl.value : '';
+  if (!email || !email.includes('@')) {
+    emailEl.style.borderBottom = '2px solid red';
+    return;
+  }
+  const formEl = document.getElementById(source + '-form-wrap');
+  const successEl = document.getElementById(source + '-success');
+  if (formEl) formEl.style.display = 'none';
+  if (successEl) {
+    successEl.style.display = 'block';
+    successEl.querySelectorAll('[data-lang]').forEach(el => {
+      el.style.display = el.dataset.lang === currentLang ? 'inline' : 'none';
+    });
+  }
+  console.log('Waitlist:', email, source, currentLang);
+}
+
+document.addEventListener('DOMContentLoaded', () => setLang('en'));
+document.querySelectorAll('input[type="email"]').forEach(input => {
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const src = input.id.replace('-email','');
+      submitWaitlist(src);
+    }
+  });
+});
+</script>
+</body>
+</html>
