@@ -18,29 +18,26 @@ function HeroHeadline({ lang }: { lang: Lang }) {
   if (lang === "fr") {
     return (
       <h1>
-        Sauvegarde
+        Tes adresses.
         <br />
-        <span className="line2">partage</span>
-        <span className="line3"> avec tes amis.</span>
+        <span className="line2">Les gens en qui tu as confiance.</span>
       </h1>
     );
   }
   if (lang === "es") {
     return (
       <h1>
-        Guarda sitios.
+        Tus sitios.
         <br />
-        <span className="line2">Comparte</span>
-        <span className="line3"> con amigos.</span>
+        <span className="line2">La gente en quien confías.</span>
       </h1>
     );
   }
   return (
     <h1>
-      Save places.
+      Your places.
       <br />
-      <span className="line2">Share</span>
-      <span className="line3"> with friends.</span>
+      <span className="line2">The people you trust.</span>
     </h1>
   );
 }
@@ -154,12 +151,12 @@ function FinalHeadline({ lang }: { lang: Lang }) {
 }
 
 const marqueeItems = [
-  "Save from Instagram",
-  "Import Google Maps",
-  "Share via WhatsApp",
   "Friend ratings only",
   "Zero ads, ever",
   "Free forever",
+  "Save from Instagram",
+  "Import Google Maps",
+  "Share via WhatsApp",
   "Barcelona · Paris · Madrid · Lyon",
 ];
 
@@ -304,7 +301,7 @@ export default function Page() {
 
         <div className="features-grid">
           <div className="feature-card">
-            <span className="feature-emoji">📍</span>
+            <span className="feature-emoji">👥</span>
             <div className="feature-title">{t.feature1Title[lang]}</div>
             <div className="feature-body">{t.feature1Body[lang]}</div>
           </div>
@@ -314,12 +311,12 @@ export default function Page() {
             <div className="feature-body">{t.feature2Body[lang]}</div>
           </div>
           <div className="feature-card">
-            <span className="feature-emoji">👥</span>
+            <span className="feature-emoji">📲</span>
             <div className="feature-title">{t.feature3Title[lang]}</div>
             <div className="feature-body">{t.feature3Body[lang]}</div>
           </div>
           <div className="feature-card">
-            <span className="feature-emoji">📲</span>
+            <span className="feature-emoji">📍</span>
             <div className="feature-title">{t.feature4Title[lang]}</div>
             <div className="feature-body">{t.feature4Body[lang]}</div>
           </div>
@@ -339,9 +336,7 @@ export default function Page() {
               <div>
                 <div className="step-title">{t.step1Title[lang]}</div>
                 <div className="step-body">{t.step1Body[lang]}</div>
-                <span className="step-pill">
-                  Instagram · Google Maps · Search
-                </span>
+                <span className="step-pill">{t.step1Pill[lang]}</span>
               </div>
             </div>
             <div className="step">
@@ -357,9 +352,7 @@ export default function Page() {
               <div>
                 <div className="step-title">{t.step3Title[lang]}</div>
                 <div className="step-body">{t.step3Body[lang]}</div>
-                <span className="step-pill">
-                  WhatsApp · Deep links · No install
-                </span>
+                <span className="step-pill">{t.step3Pill[lang]}</span>
               </div>
             </div>
           </div>

@@ -11,14 +11,14 @@ export const t = {
     es: "Unirse a la lista",
   },
   heroBadge: {
-    en: "Coming to France & Spain",
-    fr: "Bientôt en France & Espagne",
-    es: "Próximamente en Francia & España",
+    en: "Now launching in Barcelona",
+    fr: "Lancement à Barcelone",
+    es: "Lanzamos en Barcelona",
   },
   heroSub: {
-    en: "The social map for foodies. Capture spots from Instagram or Google Maps, build lists, and see what the people you trust actually recommend.",
-    fr: "La carte sociale pour foodies. Capture des adresses depuis Instagram ou Google Maps, crée des listes, et vois ce que tes amis recommandent vraiment.",
-    es: "El mapa social para foodies. Captura sitios desde Instagram o Google Maps, crea listas y descubre lo que tus amigos recomiendan de verdad.",
+    en: "Save the spots you love. Share with the friends whose taste actually matters. Discover what they recommend — not 10,000 strangers.",
+    fr: "Sauvegarde les adresses que tu aimes. Partage avec les amis dont l'avis compte vraiment. Découvre ce qu'ils recommandent — pas 10 000 inconnus.",
+    es: "Guarda los sitios que te encantan. Comparte con los amigos cuyo gusto importa de verdad. Descubre lo que ellos recomiendan — no 10.000 desconocidos.",
   },
   heroCta: {
     en: "Get early access",
@@ -56,14 +56,14 @@ export const t = {
     es: "Google Maps es para navegar. Barhio es para quien de verdad disfruta comer.",
   },
   feature1Title: {
-    en: "Capture from anywhere",
-    fr: "Capture depuis partout",
-    es: "Captura desde cualquier sitio",
+    en: "Trust your people",
+    fr: "Fais confiance à tes amis",
+    es: "Confía en tu gente",
   },
   feature1Body: {
-    en: "Share an Instagram reel or Google Maps link to Barhio. AI extracts the place in under 5 seconds. No typing, no friction.",
-    fr: "Partage un reel Instagram ou un lien Google Maps vers Barhio. L'IA extrait l'adresse en moins de 5 secondes. Sans effort.",
-    es: "Comparte un reel de Instagram o un enlace de Google Maps a Barhio. La IA extrae el lugar en menos de 5 segundos.",
+    en: "See the aggregated rating of your friends on every place. Not 10,000 strangers — the three people whose taste you actually trust.",
+    fr: "Vois la note agrégée de tes amis sur chaque adresse. Pas 10 000 inconnus — les trois personnes dont tu fais vraiment confiance.",
+    es: "Ve la nota media de tus amigos en cada sitio. No 10.000 desconocidos — las tres personas en quienes realmente confías.",
   },
   feature2Title: {
     en: "Rate what you love",
@@ -76,56 +76,74 @@ export const t = {
     es: "5 estrellas, una nota personal, visitado o wishlist. Tu memoria gastronómica, organizada para siempre.",
   },
   feature3Title: {
-    en: "Trust your people",
-    fr: "Fais confiance à tes amis",
-    es: "Confía en tu gente",
-  },
-  feature3Body: {
-    en: "See the aggregated rating of your friends on every place. Not 10,000 strangers — the three people whose taste you actually trust.",
-    fr: "Vois la note agrégée de tes amis sur chaque adresse. Pas 10 000 inconnus — les trois personnes dont tu fais vraiment confiance.",
-    es: "Ve la nota media de tus amigos en cada sitio. No 10.000 desconocidos — las tres personas en quienes realmente confías.",
-  },
-  feature4Title: {
     en: "Share lists in one tap",
     fr: "Partage des listes en un tap",
     es: "Comparte listas en un tap",
   },
-  feature4Body: {
+  feature3Body: {
     en: 'Build themed lists like "Date Night" or "Best Brunch". Share to WhatsApp in one tap — your friends see a map, no app install needed.',
     fr: 'Crée des listes comme "Dîner en amoureux" ou "Meilleurs brunchs". Partage sur WhatsApp en un tap — avec carte, sans install.',
     es: 'Crea listas como "Cena romántica" o "Mejores brunchs". Comparte por WhatsApp en un tap — con mapa, sin instalar la app.',
+  },
+  feature4Title: {
+    en: "Capture from anywhere",
+    fr: "Capture depuis partout",
+    es: "Captura desde cualquier sitio",
+  },
+  feature4Body: {
+    en: "Share an Instagram reel or Google Maps link to Barhio. AI extracts the place in under 5 seconds. No typing, no friction.",
+    fr: "Partage un reel Instagram ou un lien Google Maps vers Barhio. L'IA extrait l'adresse en moins de 5 secondes. Sans effort.",
+    es: "Comparte un reel de Instagram o un enlace de Google Maps a Barhio. La IA extrae el lugar en menos de 5 segundos.",
   },
   howEyebrow: {
     en: "How it works",
     fr: "Comment ça marche",
     es: "Cómo funciona",
   },
-  step1Title: { en: "Capture", fr: "Capture", es: "Captura" },
-  step1Body: {
-    en: "See a restaurant on Instagram? Share it to Barhio. AI extracts name, address, and type instantly. Or search directly, or import from Google Maps.",
-    fr: "Tu vois un restaurant sur Instagram ? Partage-le vers Barhio. L'IA extrait le nom, l'adresse et le type instantanément.",
-    es: "¿Ves un restaurante en Instagram? Compártelo a Barhio. La IA extrae el nombre, dirección y tipo al instante.",
-  },
-  step2Title: {
+  step1Title: {
     en: "Save & rate",
     fr: "Sauvegarde & note",
     es: "Guarda & valora",
   },
-  step2Body: {
-    en: "Mark it visited or wishlist. Add your rating and a personal note. Build your map of places that matter.",
-    fr: "Marque-le visité ou wishlist. Ajoute ta note et un commentaire perso. Construis ta carte des adresses qui comptent.",
-    es: "Márcalo como visitado o wishlist. Añade tu valoración y una nota personal. Construye tu mapa de sitios favoritos.",
+  step1Body: {
+    en: "Search for a place, or share directly from Instagram or Google Maps. Mark it visited or wishlist. Add your honest rating and a personal note. Your private food memory, forever organized.",
+    fr: "Cherche une adresse, ou partage-la directement depuis Instagram ou Google Maps. Marque-la visitée ou wishlist. Ajoute ta note honnête et un commentaire perso. Ta mémoire food privée, organisée pour toujours.",
+    es: "Busca un sitio, o compártelo directamente desde Instagram o Google Maps. Márcalo como visitado o wishlist. Añade tu valoración honesta y una nota personal. Tu memoria gastronómica privada, organizada para siempre.",
   },
-  step2Pill: {
+  step1Pill: {
     en: "Private by default",
     fr: "Privé par défaut",
     es: "Privado por defecto",
   },
-  step3Title: { en: "Share", fr: "Partage", es: "Comparte" },
+  step2Title: {
+    en: "Share with your circle",
+    fr: "Partage avec ton cercle",
+    es: "Comparte con tu círculo",
+  },
+  step2Body: {
+    en: "Not the world. The people whose taste you trust. Share a place or a full list — your friends see a map with your picks, no app install needed.",
+    fr: "Pas le monde entier. Les gens dont tu fais confiance au goût. Partage une adresse ou une liste complète — tes amis voient une carte avec tes choix, sans installer l'appli.",
+    es: "No al mundo entero. A las personas cuyo gusto te importa. Comparte un sitio o una lista entera — tus amigos ven un mapa con tus elecciones, sin instalar la app.",
+  },
+  step2Pill: {
+    en: "WhatsApp · No install required",
+    fr: "WhatsApp · Sans installation",
+    es: "WhatsApp · Sin instalación",
+  },
+  step3Title: {
+    en: "Discover & explore",
+    fr: "Découvre & explore",
+    es: "Descubre & explora",
+  },
   step3Body: {
-    en: "Create themed lists. One tap sends them to WhatsApp with a map. Friends can view without installing the app.",
-    fr: "Crée des listes thématiques. Un tap les envoie sur WhatsApp avec une carte. Les amis voient sans installer l'appli.",
-    es: "Crea listas temáticas. Un tap las envía por WhatsApp con un mapa. Los amigos las ven sin instalar la app.",
+    en: "See what your friends love on every place page. Explore profiles of people with similar taste. The more your circle saves, the more valuable Barhio becomes for everyone.",
+    fr: "Vois ce que tes amis aiment sur chaque adresse. Explore les profils de personnes au goût similaire. Plus ton cercle sauvegarde, plus Barhio devient précieux pour tout le monde.",
+    es: "Ve qué les encanta a tus amigos en cada sitio. Explora perfiles de gente con gusto parecido. Cuanto más guarda tu círculo, más valioso se vuelve Barhio para todos.",
+  },
+  step3Pill: {
+    en: "Friend ratings only",
+    fr: "Notes d'amis uniquement",
+    es: "Solo valoraciones de amigos",
   },
   promiseLabel: {
     en: "Our promise",
@@ -133,9 +151,9 @@ export const t = {
     es: "Nuestra promesa",
   },
   finalSub: {
-    en: "Launching in France and Spain. Be among the first foodies on Barhio.",
-    fr: "Lancement en France et en Espagne. Sois parmi les premiers foodies sur Barhio.",
-    es: "Lanzamiento en Francia y España. Sé de los primeros foodies en Barhio.",
+    en: "Launching in Barcelona. Be among the first foodies on Barhio.",
+    fr: "Lancement à Barcelone. Sois parmi les premiers foodies sur Barhio.",
+    es: "Lanzamos en Barcelona. Sé de los primeros foodies en Barhio.",
   },
   finalCta: {
     en: "Join waitlist",

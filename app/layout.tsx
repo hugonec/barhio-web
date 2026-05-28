@@ -11,22 +11,22 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://barhio.com"),
-  title: "Barhio — Save places. Share with friends.",
+  title: "Barhio — Your places. The people you trust.",
   description:
-    "The social map for foodies. Capture spots from Instagram or Google Maps, build lists, and see what the people you trust actually recommend.",
+    "Save the places you love, share with friends whose taste you trust, and discover what they really recommend. No ads. No strangers. Just your people.",
   openGraph: {
-    title: "Barhio — Save places. Share with friends.",
+    title: "Barhio — Your places. The people you trust.",
     description:
-      "The social map for foodies. Launching in France and Spain.",
+      "The social food app built on trust. Launching in Barcelona.",
     url: "https://barhio.com",
     siteName: "Barhio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barhio — Save places. Share with friends.",
+    title: "Barhio — Your places. The people you trust.",
     description:
-      "The social map for foodies. Launching in France and Spain.",
+      "The social food app built on trust. Launching in Barcelona.",
   },
 };
 
