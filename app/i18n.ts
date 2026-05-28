@@ -17,7 +17,7 @@ export const t = {
   },
   heroSub: {
     en: "How you've always found great restaurants — from the people whose taste you trust. Now in one app, made for the friends who actually know.",
-    fr: "Comme tu as toujours trouvé les bonnes adresses — par les gens dont tu aimes le goût. Dans une seule app, pensée pour les amis qui savent vraiment.",
+    fr: "Partagez vos adresses avec vos amis, explorez leur carnet d'adresses. Dans une seule app.",
     es: "Como siempre has descubierto los buenos restaurantes — por la gente cuyo gusto te importa. En una sola app, hecha para los amigos que de verdad saben.",
   },
   heroCta: {
