@@ -163,8 +163,8 @@ nav {
 
 h1 {
   font-family: var(--font-fraunces), "Fraunces", serif;
-  font-size: clamp(4rem, 10vw, 8.5rem);
-  line-height: 0.92;
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 700;
   max-width: 900px;

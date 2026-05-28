@@ -18,26 +18,26 @@ function HeroHeadline({ lang }: { lang: Lang }) {
   if (lang === "fr") {
     return (
       <h1>
-        Tes adresses.
+        Le bouche à oreille.
         <br />
-        <span className="line2">Les gens en qui tu as confiance.</span>
+        <span className="line2">En mieux.</span>
       </h1>
     );
   }
   if (lang === "es") {
     return (
       <h1>
-        Tus sitios.
+        El boca a boca.
         <br />
-        <span className="line2">La gente en quien confías.</span>
+        <span className="line2">Solo que mejor.</span>
       </h1>
     );
   }
   return (
     <h1>
-      Your places.
+      Word of mouth.
       <br />
-      <span className="line2">The people you trust.</span>
+      <span className="line2">Only better.</span>
     </h1>
   );
 }
@@ -89,29 +89,34 @@ function PromiseText({ lang }: { lang: Lang }) {
   if (lang === "fr") {
     return (
       <div className="promise-text">
-        Le feed, les notes d&apos;amis et les recommandations ne sont{" "}
+        Le bouche à oreille ne marche que s&apos;il est honnête. Ton feed, les
+        notes de tes amis et nos recommandations ne sont{" "}
         <strong>jamais influencés par l&apos;argent.</strong> Les restaurants
-        peuvent compléter leur profil, mais ils ne peuvent jamais acheter de
-        visibilité. <strong>Jamais.</strong>
+        peuvent compléter leur profil — photos, menu, site — mais ils ne peuvent
+        jamais acheter de ranking, de visibilité, ni une seule étoile.{" "}
+        <strong>Jamais.</strong>
       </div>
     );
   }
   if (lang === "es") {
     return (
       <div className="promise-text">
-        El feed, las valoraciones de amigos y las recomendaciones{" "}
+        El boca a boca solo funciona si es honesto. Tu feed, las valoraciones de
+        tus amigos y nuestras recomendaciones{" "}
         <strong>nunca están influenciadas por el dinero.</strong> Los
-        restaurantes pueden completar su perfil, pero nunca pueden comprar
-        visibilidad. <strong>Jamás.</strong>
+        restaurantes completan su perfil — fotos, menú, web — pero nunca pueden
+        comprar ranking, visibilidad ni una sola estrella.{" "}
+        <strong>Jamás.</strong>
       </div>
     );
   }
   return (
     <div className="promise-text">
-      User feed, friend ratings, and recommendations are{" "}
+      Word of mouth only works if it&apos;s honest. Your feed, your friends&apos;
+      ratings, and our recommendations are{" "}
       <strong>never influenced by money.</strong> Restaurants complete their
-      profile — photos, menu, website — but they can never buy ranking or
-      visibility. <strong>Ever.</strong>
+      profile — photos, menu, website — but they can never buy ranking,
+      visibility, or a single star. <strong>Ever.</strong>
     </div>
   );
 }
@@ -150,15 +155,35 @@ function FinalHeadline({ lang }: { lang: Lang }) {
   );
 }
 
-const marqueeItems = [
-  "Friend ratings only",
-  "Zero ads, ever",
-  "Free forever",
-  "Save from Instagram",
-  "Import Google Maps",
-  "Share via WhatsApp",
-  "Barcelona · Paris · Madrid · Lyon",
-];
+const marqueeItemsByLang: Record<Lang, string[]> = {
+  en: [
+    "Friend ratings only",
+    "Zero ads, ever",
+    "Free forever",
+    "Save from Instagram",
+    "Import Google Maps",
+    "Share via WhatsApp",
+    "Barcelona · Paris · Madrid · Lyon",
+  ],
+  fr: [
+    "Notes d'amis uniquement",
+    "Zéro pub, jamais",
+    "Gratuit pour toujours",
+    "Sauvegarde depuis Instagram",
+    "Import Google Maps",
+    "Partage sur WhatsApp",
+    "Barcelone · Paris · Madrid · Lyon",
+  ],
+  es: [
+    "Solo valoraciones de amigos",
+    "Cero anuncios, jamás",
+    "Gratis para siempre",
+    "Guarda desde Instagram",
+    "Import Google Maps",
+    "Comparte por WhatsApp",
+    "Barcelona · París · Madrid · Lyon",
+  ],
+};
 
 export default function Page() {
   const [lang, setLang] = useState<Lang>("en");
@@ -285,11 +310,13 @@ export default function Page() {
       {/* MARQUEE */}
       <div className="marquee-wrap">
         <div className="marquee-track">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="marquee-item">
-              <span className="marquee-sep">★</span> {item}
-            </span>
-          ))}
+          {[...marqueeItemsByLang[lang], ...marqueeItemsByLang[lang]].map(
+            (item, i) => (
+              <span key={i} className="marquee-item">
+                <span className="marquee-sep">★</span> {item}
+              </span>
+            ),
+          )}
         </div>
       </div>
 

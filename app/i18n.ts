@@ -16,9 +16,9 @@ export const t = {
     es: "Lanzamos en Barcelona",
   },
   heroSub: {
-    en: "Save the spots you love. Share with the friends whose taste actually matters. Discover what they recommend — not 10,000 strangers.",
-    fr: "Sauvegarde les adresses que tu aimes. Partage avec les amis dont l'avis compte vraiment. Découvre ce qu'ils recommandent — pas 10 000 inconnus.",
-    es: "Guarda los sitios que te encantan. Comparte con los amigos cuyo gusto importa de verdad. Descubre lo que ellos recomiendan — no 10.000 desconocidos.",
+    en: "How you've always found great restaurants — from the people whose taste you trust. Now in one app, made for the friends who actually know.",
+    fr: "Comme tu as toujours trouvé les bonnes adresses — par les gens dont tu aimes le goût. Dans une seule app, pensée pour les amis qui savent vraiment.",
+    es: "Como siempre has descubierto los buenos restaurantes — por la gente cuyo gusto te importa. En una sola app, hecha para los amigos que de verdad saben.",
   },
   heroCta: {
     en: "Get early access",
