@@ -435,10 +435,13 @@ export default function Page() {
         <Logo />
         <ul className="footer-links">
           <li>
-            <a href="#">Privacy</a>
+            <a href="/privacy">Privacy</a>
           </li>
           <li>
-            <a href="#">Terms</a>
+            <a href="/terms">Terms</a>
+          </li>
+          <li>
+            <a href="/cookies">Cookies</a>
           </li>
           <li>
             <a href="mailto:hello@barhio.com">Contact</a>
@@ -447,7 +450,7 @@ export default function Page() {
             <a href="https://instagram.com/barhio">Instagram</a>
           </li>
         </ul>
-        <span className="footer-copy">© 2025 Barhio</span>
+        <span className="footer-copy">© 2026 Barhio</span>
       </footer>
     </>
   );
