@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useActionState, useState } from "react";
 import { joinWaitlist, type WaitlistState } from "./actions";
 import { LANGS, t, type Lang } from "./i18n";
@@ -8,8 +9,14 @@ const initialState: WaitlistState = { ok: false };
 
 function Logo({ className }: { className?: string }) {
   return (
-    <a href="#" className={`logo ${className ?? ""}`}>
-      Bar<span className="dot">h</span>io
+    <a href="#" className={`logo-img ${className ?? ""}`} aria-label="Barhio">
+      <Image
+        src="/barhio-woodmark.png"
+        alt="Barhio"
+        width={1200}
+        height={1400}
+        priority
+      />
     </a>
   );
 }

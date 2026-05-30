@@ -72,6 +72,20 @@ nav {
 .logo .dot {
   color: var(--orange);
 }
+.logo-img {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+}
+.logo-img img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+footer .logo-img img {
+  height: 72px;
+}
 .nav-right {
   display: flex;
   align-items: center;
