@@ -6,9 +6,9 @@ type Dict = Record<Lang, string>;
 
 export const t = {
   navCta: {
-    en: "Join waitlist",
-    fr: "Rejoindre la liste",
-    es: "Unirse a la lista",
+    en: "Get started Now",
+    fr: "Commencer maintenant",
+    es: "Empezar ahora",
   },
   heroBadge: {
     en: "Now launching in Barcelona",
@@ -21,9 +21,9 @@ export const t = {
     es: "Como siempre has descubierto los buenos restaurantes — por la gente cuyo gusto te importa. En una sola app, hecha para los amigos que de verdad saben.",
   },
   heroCta: {
-    en: "Get early access",
-    fr: "Accès anticipé",
-    es: "Acceso anticipado",
+    en: "Get started Now",
+    fr: "Commencer maintenant",
+    es: "Empezar ahora",
   },
   heroFormNote: {
     en: "No spam. Free forever for users.",
@@ -156,9 +156,9 @@ export const t = {
     es: "Lanzamos en Barcelona. Sé de los primeros foodies en Barhio.",
   },
   finalCta: {
-    en: "Join waitlist",
-    fr: "Rejoindre la liste",
-    es: "Unirse a la lista",
+    en: "Get started Now",
+    fr: "Commencer maintenant",
+    es: "Empezar ahora",
   },
   finalNote: {
     en: "No spam. No ads. Just Barhio when it's ready.",

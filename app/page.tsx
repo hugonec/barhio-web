@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useActionState, useState } from "react";
-import { joinWaitlist, type WaitlistState } from "./actions";
+import { useState } from "react";
 import { LANGS, t, type Lang } from "./i18n";
 
-const initialState: WaitlistState = { ok: false };
+const LOGIN_URL = "https://barhio.vercel.app/login";
 
 function Logo({ className }: { className?: string }) {
   return (
@@ -194,17 +193,6 @@ const marqueeItemsByLang: Record<Lang, string[]> = {
 
 export default function Page() {
   const [lang, setLang] = useState<Lang>("en");
-  const [heroState, heroAction, heroPending] = useActionState(
-    joinWaitlist,
-    initialState,
-  );
-  const [finalState, finalAction, finalPending] = useActionState(
-    joinWaitlist,
-    initialState,
-  );
-
-  const errorMsg = (s: WaitlistState) =>
-    s.error === "invalid_email" ? t.invalidEmail[lang] : t.serverError[lang];
 
   return (
     <>
@@ -224,7 +212,7 @@ export default function Page() {
               </button>
             ))}
           </div>
-          <a href="#waitlist" className="cta-nav">
+          <a href={LOGIN_URL} className="cta-nav">
             {t.navCta[lang]}
           </a>
         </div>
@@ -242,34 +230,11 @@ export default function Page() {
         <div className="hero-row">
           <div>
             <p className="hero-sub">{t.heroSub[lang]}</p>
-            <div className="waitlist-wrap">
-              {heroState.ok ? (
-                <div className="success-msg" role="status">
-                  {t.heroSuccess[lang]}
-                </div>
-              ) : (
-                <form action={heroAction}>
-                  <div className="form-row">
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="your@email.com"
-                      aria-label="Email"
-                    />
-                    <input type="hidden" name="lang" value={lang} />
-                    <input type="hidden" name="source" value="hero" />
-                    <button type="submit" disabled={heroPending}>
-                      {t.heroCta[lang]}
-                    </button>
-                  </div>
-                </form>
-              )}
-              {!heroState.ok && heroState.error ? (
-                <p className="form-error">{errorMsg(heroState)}</p>
-              ) : (
-                <p className="form-note">{t.heroFormNote[lang]}</p>
-              )}
+            <div className="cta-wrap">
+              <a href={LOGIN_URL} className="cta-primary">
+                {t.heroCta[lang]}
+              </a>
+              <p className="form-note">{t.heroFormNote[lang]}</p>
             </div>
           </div>
         </div>
@@ -403,37 +368,14 @@ export default function Page() {
       </div>
 
       {/* FINAL CTA */}
-      <div id="waitlist">
+      <div id="get-started">
         <div className="final">
           <FinalHeadline lang={lang} />
           <p>{t.finalSub[lang]}</p>
-          {finalState.ok ? (
-            <div className="success-msg final-success" role="status">
-              {t.heroSuccess[lang]}
-            </div>
-          ) : (
-            <form action={finalAction}>
-              <div className="final-form">
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="your@email.com"
-                  aria-label="Email"
-                />
-                <input type="hidden" name="lang" value={lang} />
-                <input type="hidden" name="source" value="final" />
-                <button type="submit" disabled={finalPending}>
-                  {t.finalCta[lang]}
-                </button>
-              </div>
-            </form>
-          )}
-          {!finalState.ok && finalState.error ? (
-            <p className="form-error">{errorMsg(finalState)}</p>
-          ) : (
-            <p className="final-note">{t.finalNote[lang]}</p>
-          )}
+          <a href={LOGIN_URL} className="cta-primary cta-primary-lg">
+            {t.finalCta[lang]}
+          </a>
+          <p className="final-note">{t.finalNote[lang]}</p>
         </div>
       </div>
 
