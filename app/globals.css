@@ -12,10 +12,10 @@
   --cream: #f5f0e8;
   --cream-dark: #ede7d6;
   --ink: #1a1208;
-  --orange: #e85a1e;
+  --orange: #e3001b; /* brand red sampled from the logo (var name kept to avoid churn) */
   --green: #2d7a3a;
   --pistachio: #c5e8a0;
-  --red: #d63b2f;
+  --red: #b80016; /* darker hover variant of the brand red */
   --yellow: #f5c842;
   --blue: #2b5be8;
   --pink: #ff6b9d;

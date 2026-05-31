@@ -13,8 +13,8 @@ function Logo({ className }: { className?: string }) {
       <Image
         src="/barhio-woodmark.png"
         alt="Barhio"
-        width={1200}
-        height={1400}
+        width={1109}
+        height={499}
         priority
       />
     </a>
