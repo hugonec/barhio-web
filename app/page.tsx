@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { LANGS, t, type Lang } from "./i18n";
 
-const LOGIN_URL = "https://barhio.vercel.app/login";
+const LOGIN_URL = "https://app.barhio.com/";
 
 function Logo({ className }: { className?: string }) {
   return (
