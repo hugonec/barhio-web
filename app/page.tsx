@@ -11,6 +11,68 @@ const LOGO_TAGLINE: Record<Lang, string> = {
   es: "el boca a boca, pero mejor",
 };
 
+type IconName = "users" | "star" | "share" | "pin" | "lock";
+
+function Icon({
+  name,
+  size = 32,
+  className,
+}: {
+  name: IconName;
+  size?: number;
+  className?: string;
+}) {
+  const paths: Record<IconName, React.ReactNode> = {
+    users: (
+      <>
+        <circle cx="9" cy="8" r="3.5" />
+        <path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5" />
+        <circle cx="17" cy="9.5" r="2.5" />
+        <path d="M16 14.5c2.8 0 5.5 2 5.5 5" />
+      </>
+    ),
+    star: (
+      <path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.5 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z" />
+    ),
+    share: (
+      <>
+        <path d="M9 8.5H7.5A2.5 2.5 0 0 0 5 11v9a2.5 2.5 0 0 0 2.5 2.5h9A2.5 2.5 0 0 0 19 20v-9a2.5 2.5 0 0 0-2.5-2.5H15" />
+        <path d="M12 2.5v12" />
+        <path d="M8 6.5l4-4 4 4" />
+      </>
+    ),
+    pin: (
+      <>
+        <path d="M12 22s7.5-6.5 7.5-12a7.5 7.5 0 0 0-15 0c0 5.5 7.5 12 7.5 12z" />
+        <circle cx="12" cy="10" r="3" />
+      </>
+    ),
+    lock: (
+      <>
+        <rect x="4.5" y="11" width="15" height="10" rx="2" />
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+
 function Logo({
   className,
   lang,
@@ -184,7 +246,7 @@ const marqueeItemsByLang: Record<Lang, string[]> = {
     "Save from Instagram",
     "Import Google Maps",
     "Share via WhatsApp",
-    "Barcelona · Paris · Madrid · Lyon",
+    "Barcelona first · more cities soon",
   ],
   fr: [
     "Notes d'amis uniquement",
@@ -193,7 +255,7 @@ const marqueeItemsByLang: Record<Lang, string[]> = {
     "Sauvegarde depuis Instagram",
     "Import Google Maps",
     "Partage sur WhatsApp",
-    "Barcelone · Paris · Madrid · Lyon",
+    "Barcelone d'abord · d'autres villes bientôt",
   ],
   es: [
     "Solo valoraciones de amigos",
@@ -202,7 +264,7 @@ const marqueeItemsByLang: Record<Lang, string[]> = {
     "Guarda desde Instagram",
     "Import Google Maps",
     "Comparte por WhatsApp",
-    "Barcelona · París · Madrid · Lyon",
+    "Barcelona primero · más ciudades pronto",
   ],
 };
 
@@ -284,11 +346,13 @@ export default function Page() {
           </div>
 
           <div className="notif-sticker float-c">
-            <div className="notif-icon-box">📍</div>
+            <div className="notif-icon-box">
+              <Icon name="pin" size={18} />
+            </div>
             <div>
               <div className="notif-app">BARHIO · now</div>
               <div className="notif-title">Sophie shared a list</div>
-              <div className="notif-body">Date Night 🕯️ — 8 spots in Paris</div>
+              <div className="notif-body">Date Night 🕯️ — 8 spots in Barcelona</div>
             </div>
           </div>
         </div>
@@ -315,22 +379,30 @@ export default function Page() {
 
         <div className="features-grid">
           <div className="feature-card">
-            <span className="feature-emoji">👥</span>
+            <span className="feature-icon">
+              <Icon name="users" size={36} />
+            </span>
             <div className="feature-title">{t.feature1Title[lang]}</div>
             <div className="feature-body">{t.feature1Body[lang]}</div>
           </div>
           <div className="feature-card">
-            <span className="feature-emoji">⭐</span>
+            <span className="feature-icon">
+              <Icon name="star" size={36} />
+            </span>
             <div className="feature-title">{t.feature2Title[lang]}</div>
             <div className="feature-body">{t.feature2Body[lang]}</div>
           </div>
           <div className="feature-card">
-            <span className="feature-emoji">📲</span>
+            <span className="feature-icon">
+              <Icon name="share" size={36} />
+            </span>
             <div className="feature-title">{t.feature3Title[lang]}</div>
             <div className="feature-body">{t.feature3Body[lang]}</div>
           </div>
           <div className="feature-card">
-            <span className="feature-emoji">📍</span>
+            <span className="feature-icon">
+              <Icon name="pin" size={36} />
+            </span>
             <div className="feature-title">{t.feature4Title[lang]}</div>
             <div className="feature-body">{t.feature4Body[lang]}</div>
           </div>
@@ -375,7 +447,9 @@ export default function Page() {
 
       {/* PROMISE */}
       <div className="promise">
-        <div className="promise-lock">🔒</div>
+        <div className="promise-lock">
+          <Icon name="lock" size={32} />
+        </div>
         <div>
           <div className="promise-label">{t.promiseLabel[lang]}</div>
           <PromiseText lang={lang} />

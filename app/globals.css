@@ -18,7 +18,7 @@
 
   /* Brand / selection / trust — cyan pop */
   --cyan: #44ddf1;        /* fills, badges, large brand pop */
-  --cyan-deep: #1f8fa3;   /* readable cyan for text & links on cream */
+  --cyan-deep: #298e9c;   /* readable cyan for text & links on cream */
 
   /* Action — orange. ONLY use for "tap here" affordances. */
   --orange: #eb8f48;
@@ -617,10 +617,10 @@ h1 .line3 {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--ink);
 }
-.feature-emoji {
-  font-size: 2rem;
+.feature-icon {
+  display: inline-flex;
   margin-bottom: 1rem;
-  display: block;
+  color: var(--ink);
 }
 .feature-title {
   font-family: var(--font-fraunces), "Fraunces", serif;

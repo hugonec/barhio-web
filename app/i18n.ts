@@ -6,7 +6,7 @@ type Dict = Record<Lang, string>;
 
 export const t = {
   navCta: {
-    en: "Get started Now",
+    en: "Get started now",
     fr: "Commencer maintenant",
     es: "Empezar ahora",
   },
@@ -21,7 +21,7 @@ export const t = {
     es: "Como siempre has descubierto los buenos restaurantes — por la gente cuyo gusto te importa. En una sola app, hecha para los amigos que de verdad saben.",
   },
   heroCta: {
-    en: "Get started Now",
+    en: "Get started now",
     fr: "Commencer maintenant",
     es: "Empezar ahora",
   },
@@ -156,7 +156,7 @@ export const t = {
     es: "Lanzamos en Barcelona. Sé de los primeros foodies en Barhio.",
   },
   finalCta: {
-    en: "Get started Now",
+    en: "Get started now",
     fr: "Commencer maintenant",
     es: "Empezar ahora",
   },
