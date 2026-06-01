@@ -21,12 +21,27 @@ export const metadata: Metadata = {
     url: "https://barhio.com",
     siteName: "Barhio",
     type: "website",
+    images: [
+      {
+        url: "https://barhio.com/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Barhio — word of mouth, only better",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Barhio — Word of mouth. Only better.",
     description:
       "The social food app built on trust. Launching in Barcelona.",
+    images: [
+      {
+        url: "https://barhio.com/og.png",
+        alt: "Barhio — word of mouth, only better",
+      },
+    ],
   },
 };
 
