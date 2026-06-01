@@ -1,21 +1,36 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { LANGS, t, type Lang } from "./i18n";
 
 const LOGIN_URL = "https://app.barhio.com/";
 
-function Logo({ className }: { className?: string }) {
+const LOGO_TAGLINE: Record<Lang, string> = {
+  en: "word of mouth, only better",
+  fr: "le bouche à oreille, en mieux",
+  es: "el boca a boca, pero mejor",
+};
+
+function Logo({
+  className,
+  lang,
+  href = "#",
+}: {
+  className?: string;
+  lang: Lang;
+  href?: string;
+}) {
   return (
-    <a href="#" className={`logo-img ${className ?? ""}`} aria-label="Barhio">
-      <Image
-        src="/barhio-woodmark.png"
-        alt="Barhio"
-        width={1109}
-        height={499}
-        priority
-      />
+    <a
+      href={href}
+      className={`logo-mark ${className ?? ""}`}
+      aria-label="Barhio"
+    >
+      <span className="logo-mark-wordmark">
+        <span className="logo-bar">bar</span>
+        <span className="logo-hio">hio</span>
+      </span>
+      <span className="logo-mark-tagline">{LOGO_TAGLINE[lang]}</span>
     </a>
   );
 }
@@ -197,7 +212,7 @@ export default function Page() {
   return (
     <>
       <nav>
-        <Logo />
+        <Logo lang={lang} />
         <div className="nav-right">
           <div className="lang-toggle" role="group" aria-label="Language">
             {LANGS.map((l) => (
@@ -381,7 +396,7 @@ export default function Page() {
 
       {/* FOOTER */}
       <footer>
-        <Logo />
+        <Logo lang={lang} />
         <ul className="footer-links">
           <li>
             <a href="/privacy">Privacy</a>

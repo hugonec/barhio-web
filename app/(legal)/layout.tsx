@@ -1,17 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 function WordmarkLink() {
   return (
-    <Link href="/" className="logo-img" aria-label="Barhio">
-      <Image
-        src="/barhio-woodmark.png"
-        alt="Barhio"
-        width={1109}
-        height={499}
-        priority
-      />
+    <Link href="/" className="logo-mark" aria-label="Barhio">
+      <span className="logo-mark-wordmark">
+        <span className="logo-bar">bar</span>
+        <span className="logo-hio">hio</span>
+      </span>
+      <span className="logo-mark-tagline">word of mouth, only better</span>
     </Link>
   );
 }

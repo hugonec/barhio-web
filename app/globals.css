@@ -9,18 +9,37 @@
 }
 
 :root {
+  /* Surfaces */
   --cream: #f5f0e8;
   --cream-dark: #ede7d6;
-  --ink: #1a1208;
-  --orange: #e3001b; /* brand red sampled from the logo (var name kept to avoid churn) */
-  --green: #2d7a3a;
-  --pistachio: #c5e8a0;
-  --red: #b80016; /* darker hover variant of the brand red */
-  --yellow: #f5c842;
-  --blue: #2b5be8;
-  --pink: #ff6b9d;
+
+  /* Text & structure — deep purple */
+  --ink: #3a2044;
+
+  /* Brand / selection / trust — cyan pop */
+  --cyan: #44ddf1;        /* fills, badges, large brand pop */
+  --cyan-deep: #1f8fa3;   /* readable cyan for text & links on cream */
+
+  /* Action — orange. ONLY use for "tap here" affordances. */
+  --orange: #eb8f48;
+  --orange-dark: #d6772e; /* action hover */
+
+  /* Warmth / ratings */
+  --yellow: #f5cd6a;
+
+  /* Neutrals */
   --gray: #8a7f6e;
+  --gray-soft: #cfc6b8;
   --border: #d4c9b0;
+
+  /* Status */
+  --red: #c73e3e;         /* errors / destructive */
+  --green: #2d7a3a;       /* success text */
+  --pistachio: #c5e8a0;   /* success surface */
+
+  /* Legacy aliases mapped to new palette (decorative stickers etc.) */
+  --blue: var(--cyan);
+  --pink: var(--yellow);
 }
 
 html {
@@ -70,7 +89,7 @@ nav {
   letter-spacing: -0.03em;
 }
 .logo .dot {
-  color: var(--orange);
+  color: var(--cyan-deep);
 }
 .logo-img {
   display: inline-flex;
@@ -85,6 +104,50 @@ nav {
 }
 footer .logo-img img {
   height: 88px;
+}
+
+/* TEXT WORDMARK LOGO (current) */
+.logo-mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  line-height: 1;
+  gap: 0.2rem;
+}
+.logo-mark-wordmark {
+  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.logo-bar {
+  color: var(--ink);
+}
+.logo-hio {
+  color: var(--cyan-deep);
+}
+.logo-mark-tagline {
+  font-family: var(--font-fraunces), "Fraunces", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--gray);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+footer .logo-mark-wordmark {
+  font-size: 2.2rem;
+}
+footer .logo-bar {
+  color: var(--cream);
+}
+footer .logo-hio {
+  color: var(--cyan);
+}
+footer .logo-mark-tagline {
+  color: rgba(245, 240, 232, 0.55);
+  font-size: 0.72rem;
 }
 .nav-right {
   display: flex;
@@ -147,13 +210,13 @@ footer .logo-img img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--pistachio);
-  border: 1.5px solid var(--green);
+  background: rgba(68, 221, 241, 0.18);
+  border: 1.5px solid var(--cyan-deep);
   padding: 0.4rem 1rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
-  color: var(--green);
+  color: var(--cyan-deep);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 2rem;
@@ -162,7 +225,7 @@ footer .logo-img img {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--orange);
   animation: blink 1.8s ease-in-out infinite;
 }
 @keyframes blink {
@@ -187,7 +250,7 @@ h1 {
 h1 .line2 {
   display: block;
   font-style: italic;
-  color: var(--orange);
+  color: var(--cyan-deep);
 }
 h1 .line3 {
   display: block;
@@ -226,8 +289,8 @@ h1 .line3 {
   max-width: 420px;
 }
 .form-row:focus-within {
-  box-shadow: 3px 3px 0 var(--ink);
-  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--cyan);
+  border-color: var(--cyan-deep);
 }
 .form-row input {
   flex: 1;
@@ -303,7 +366,7 @@ h1 .line3 {
   box-shadow: 4px 4px 0 var(--ink);
 }
 .cta-primary-lg:hover {
-  background: var(--red);
+  background: var(--orange-dark);
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--ink);
 }
@@ -369,16 +432,17 @@ h1 .line3 {
   color: var(--gray);
 }
 .sticker-stars {
-  color: var(--orange);
+  color: var(--yellow);
   font-size: 0.85rem;
   margin-bottom: 0.15rem;
+  -webkit-text-stroke: 0.5px var(--ink);
 }
 .sticker-badge {
   position: absolute;
   top: -10px;
   right: 12px;
-  background: var(--orange);
-  color: #fff;
+  background: var(--cyan);
+  color: var(--ink);
   font-size: 0.65rem;
   font-weight: 800;
   padding: 0.2rem 0.6rem;
@@ -429,13 +493,14 @@ h1 .line3 {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  box-shadow: 4px 4px 0 var(--orange);
+  box-shadow: 4px 4px 0 var(--cyan);
 }
 .notif-icon-box {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: var(--orange);
+  background: var(--cyan);
+  color: var(--ink);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -490,7 +555,7 @@ h1 .line3 {
   text-transform: uppercase;
 }
 .marquee-sep {
-  color: var(--orange);
+  color: var(--yellow);
   font-size: 1.1rem;
 }
 
@@ -524,7 +589,7 @@ h1 .line3 {
 }
 .section-title em {
   font-style: italic;
-  color: var(--orange);
+  color: var(--cyan-deep);
 }
 .section-sub {
   font-size: 1rem;
@@ -570,16 +635,16 @@ h1 .line3 {
   line-height: 1.65;
 }
 .feature-card:nth-child(1) {
-  background: var(--pistachio);
+  background: rgba(68, 221, 241, 0.18); /* soft cyan — trust */
 }
 .feature-card:nth-child(2) {
-  background: #fff3d4;
+  background: rgba(245, 205, 106, 0.28); /* soft yellow — warmth */
 }
 .feature-card:nth-child(3) {
-  background: #ffe4ed;
+  background: rgba(58, 32, 68, 0.07); /* soft ink wash */
 }
 .feature-card:nth-child(4) {
-  background: #e4edff;
+  background: rgba(235, 143, 72, 0.18); /* soft orange — capture */
 }
 
 /* HOW IT WORKS */
@@ -654,7 +719,7 @@ h1 .line3 {
   align-items: flex-start;
   gap: 2rem;
   border: 2px solid var(--ink);
-  box-shadow: 6px 6px 0 var(--orange);
+  box-shadow: 6px 6px 0 var(--cyan);
   position: relative;
   overflow: hidden;
 }
@@ -666,13 +731,14 @@ h1 .line3 {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: var(--orange);
-  opacity: 0.08;
+  background: var(--cyan);
+  opacity: 0.12;
 }
 .promise-lock {
   font-size: 2.5rem;
   flex-shrink: 0;
-  background: var(--orange);
+  background: var(--cyan);
+  color: var(--ink);
   width: 56px;
   height: 56px;
   border-radius: 14px;
@@ -696,7 +762,7 @@ h1 .line3 {
   letter-spacing: -0.02em;
 }
 .promise-text strong {
-  color: var(--orange);
+  color: var(--cyan);
 }
 
 /* FINAL CTA */
@@ -716,7 +782,7 @@ h1 .line3 {
 }
 .final h2 em {
   font-style: italic;
-  color: var(--orange);
+  color: var(--cyan-deep);
 }
 .final p {
   color: var(--gray);
@@ -736,7 +802,7 @@ h1 .line3 {
   transition: box-shadow 0.15s;
 }
 .final-form:focus-within {
-  box-shadow: 5px 5px 0 var(--orange);
+  box-shadow: 5px 5px 0 var(--cyan);
 }
 .final-form input {
   flex: 1;
@@ -765,7 +831,7 @@ h1 .line3 {
   white-space: nowrap;
 }
 .final-form button:hover {
-  background: var(--red);
+  background: var(--orange-dark);
 }
 .final-form button:disabled {
   opacity: 0.6;
@@ -794,7 +860,7 @@ footer .logo {
   color: var(--cream);
 }
 footer .logo .dot {
-  color: var(--orange);
+  color: var(--cyan-deep);
 }
 .footer-links {
   display: flex;
@@ -913,12 +979,12 @@ footer .logo .dot {
   margin-bottom: 0;
 }
 .legal-prose a {
-  color: var(--orange);
+  color: var(--cyan-deep);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .legal-prose a:hover {
-  color: var(--red);
+  color: var(--ink);
 }
 .legal-prose strong {
   font-weight: 700;
